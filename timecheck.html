@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>TIME CHECK</title>
+  </head>
+  <script type="text/javascript">
+    var date_info;
+    function start() {
+      var clock = document.getElementById("clock");
+      date_info = setInterval(function () {
+        var now = new Date();
+        clock.innerHTML = now.toLocaleString();
+      }, 1000);
+      alert("start");
+      var text = document.getElementById("newtext");
+      text.innerHTML = "시간을 멈추려면 stop버튼을 눌러주세요.";
+    }
+    function stop() {
+      alert("stop");
+
+      clearInterval(date_info);
+      var text = document.getElementById("newtext");
+      text.innerHTML = "시간을 확인하려면 start버튼을 눌러주세요!";
+    }
+  </script>
+  <body>
+    <p id="newtext">시간을 확인하려면 start버튼을 눌러주세요!</p>
+    <h1 id="clock"></h1>
+    <button onclick="start()">start</button>
+    <button onclick="stop()">stop</button>
+  </body>
+</html>
