@@ -6,7 +6,7 @@
 
 >참고
 >
->**https://github.com/egoing/sql-join , https://sql-joins.leopard.in.ua/**(SQL Joins Visualizer)
+>**https://github.com/egoing/sql-join , https://sql-joins.leopard.in.ua/** (SQL Joins Visualizer)
 
 
 
