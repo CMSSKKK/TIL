@@ -1,8 +1,6 @@
 # JVM의 구조
 
-> 미완성 글
-
-## Class Loader
+## 1. Class Loader
 
 * 런타임에 바이트 코드로 된 .class 파일을 읽어서 class 객체를 메모리에 생성한다. (compile time이 아니다.)
 
@@ -33,7 +31,7 @@
 
 * 모든 static 변수를 원래 값으로 할당하고 static block이 있다면 할당한다.
 
-## Runtime Data Area
+## 2. Runtime Data Area
 
 ### Method Area
 
@@ -55,9 +53,9 @@
 
 #### Stack Frame
 
-* Local Variable Array
-* Operand stack
-* Frame data
+* Local Variable Array : 메서드의 지역 변수를 갖는다.
+* Operand stack : 메서드 내  중간작업이 필요한 경우 작업을 위한 런타임 공간
+* Frame data : 메서드와 관련한 symbol들이 저장된다. 만약 익셉션이 발생하면 catch블록 정보를 유지한다.
 
 ### PC Registers
 
@@ -69,18 +67,37 @@
 * Native method 정보를 가지고 있다.
 * 모든 스레드는 별도의 native method stack을 생성한다.
 
-## Excution Engine
+## 3. Excution Engine
+
+* 런타임 데이터 영역에 할당된 바이트코드를 excution engine이 실행한다.
+* excution engine이 바이트코드를 읽고 하나하나 실행한다.
 
 ### Interpreter
 
+* 인터프리터는 바이트코드를 해석하는 것은 빠르지만 실행하는 것은 느리다.
+* 인터프리터는 하나의 메서드가 여러번 호출될때 매번 새롭게 해석하기 때문에 비효율적이다.
+
 ### JIT Compiler
+
+* JIT compiler는 인터프리터의 단점을 상쇄한다.
+* 실행엔진은 바이트코드를 변환할 때는 인터프리터를 활용하지만, 반복되는 코드를 찾게되면 JIT compiler를 사용해서 전체바이트코드를 컴파일하고, 네이티브코드로 변경하도록 한다.
+* 변경된 네이티브 코드는 반복되는 메서드 호출에 사용되어 시스템 성능을 향상 시킨다.
+
+1. Intermediate Code Generater : 중간 코드 생성
+2. Code Optimizer : 생성된 중간코드를 최적화
+3. Target Code Generator : 기계어 코드 혹은 네이티브 코드를 생성
+4. Profiler : 핫스팟(메서드가 여러번 호출되었는지의 여부) 찾기
 
 ### Garbage collector
 
+* 참조되지 않는 객체를 수집하고 제거한다.
+* 가비지 컬렉션은 `System.gc()`를 호출해서 작동하게 할 수 있지만, 실행이 보장되지는 않는다.
+* JVM의 가비지 컬렉션은 생성된 객체를 수집한다.
+
 ### etc
 
-* Java Native Interface(JNI)
-* Native Method Libraries
+* Java Native Interface(JNI) : 네이티브 메서드 라이브러리와 상호작용하고 실행 엔진에 필요한 네이티브 라이브러리를 제공
+* Native Method Libraries : 실행엔진에 필요한 네이티브 라이브러리의 모음
 
 
 
