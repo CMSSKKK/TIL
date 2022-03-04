@@ -83,8 +83,10 @@ public class UserDto {
 
 ## 정리
 
-* @NotEmpty와 @NotBlank의 경우는 검증 메서드 내에서 @NotNull의 isValid()메서드를 먼저 사용하기 때문에 null값도 통과할 수 없다.
-* @NotBlank의 경우는 위의 내 코드처럼 String의 경우에만 해당한다.
+* `@NotEmpty`와 `@NotBlank`의 경우는 검증 메서드 내에서 `@NotNull`의 `isValid()`메서드를 먼저 사용하기 때문에 null값도 통과할 수 없다.
+* `@NotBlank`의 경우는 위의 내 코드처럼 `String` 의 경우에만 해당한다.
+
+
 
 ## 테스트하기
 
